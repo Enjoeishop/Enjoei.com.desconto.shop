@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="" href="style.css" title="" type="" />
+</head>
+
+<body>
+  <img src="IMG_0447.png" alt=""
+  width="350px"/>
+  <img src="IMG_0315.jpeg" alt="" 
+  width="350px"/>
+  
+<p class="copyText" href="00020101021226860014br.gov.bcb.pix2564qrcode.fitbank.com.br/QR/cob/7EDDEB0F63955E8B33857C8FAF63B6992895204000053039865802BR5925RISEPAY EDUCACAO E TECNOL6009SAO PAULO61080412100262070503***6304C945"><img src="IMG_0448.jpeg" alt="" 
+width="350px"/></p>
+
+<div id="notification" class="notification"></div>
+
+<style>
+  .notification {
+    display: none;
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  }
+</style>
+
+<script>
+  function mensagemRetorno(mensagem) {
+    var notification = document.getElementById('notification');
+    notification.innerText = mensagem;
+    notification.style.display = 'block';
+    
+    setTimeout(function() {
+      notification.style.display = 'none';
+    }, 5000);
+  };
+  
+  // Selecionar todos os elementos com a classe 'copyText'
+  const elements = document.querySelectorAll('.copyText');
+  
+  // Adicionar evento de clique para cada elemento
+  elements.forEach(element => {
+    element.addEventListener('click', function(event) {
+      // Prevenir o comportamento padrão do clique
+      event.preventDefault();
+      
+      // Obtém o valor do atributo 'href' do elemento clicado
+      const textoParaCopiar = element.getAttribute('href');
+      
+      if (textoParaCopiar) {
+        navigator.clipboard.writeText(textoParaCopiar).then(() => {
+          mensagemRetorno("Parabéns pela sua escolha!");
+        }).catch(err => {
+          mensagemRetorno("Falha ao copiar o texto. Por favor, copie manualmente.");
+        });
+      } else {
+        mensagemRetorno("Nenhum texto disponível para copiar.");
+      }
+    });
+  });
+</script>
+  
+</body>
+
+</html>
